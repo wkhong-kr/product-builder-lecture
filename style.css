@@ -1,1 +1,81 @@
-/* Add styles here */
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 90%;
+  max-width: 500px;
+}
+
+h1 {
+  color: #1a73e8;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  color: #5f6368;
+  margin-bottom: 1.5rem;
+}
+
+button {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 2rem;
+}
+
+button:hover {
+  background-color: #1557b0;
+}
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.lotto-set {
+  display: flex;
+  justify-content: space-between;
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #e8eaed;
+}
+
+.ball {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+  box-shadow: inset -3px -3px 5px rgba(0,0,0,0.2);
+}
+
+/* 로또 번호대별 색상 */
+.ball-1 { background-color: #fbc02d; } /* 1-10 yellow */
+.ball-11 { background-color: #1976d2; } /* 11-20 blue */
+.ball-21 { background-color: #d32f2f; } /* 21-30 red */
+.ball-31 { background-color: #7b1fa2; } /* 31-40 purple */
+.ball-41 { background-color: #388e3c; } /* 41-45 green */
