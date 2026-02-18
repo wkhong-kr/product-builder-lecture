@@ -121,11 +121,39 @@ h1 {
   background: var(--container-bg);
   padding: 1.5rem;
   border-radius: 12px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   border: 1px solid var(--set-border);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* Lotto Elements */
+.blog-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.blog-link:hover article {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.read-more {
+  color: var(--text-primary);
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.button-link:hover {
+  opacity: 0.9;
+}
+
+/* Footer */
 button {
   background-color: var(--btn-bg);
   color: white;
