@@ -229,15 +229,100 @@ button#generate-btn:hover {
   margin-bottom: 1rem;
 }
 
-/* Ad Container */
+/* Ad Container Optimization */
 .ad-container {
   background: var(--bg-color);
   border: 1px dashed var(--text-muted);
-  margin: 2rem 0;
-  padding: 1rem;
+  margin: 1.5rem 0;
+  padding: 0.8rem;
   border-radius: 8px;
   text-align: center;
-  min-height: 100px;
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .ad-container {
+    min-height: 60px;
+    margin: 1rem 0;
+    padding: 0.5rem;
+  }
+  .ad-container::before {
+    font-size: 0.6rem;
+  }
+}
+
+/* History & Stats Styles */
+.stats-section, .history-section {
+  margin-bottom: 2rem;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.history-table th, .history-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.history-balls {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ball-sm {
+  width: 28px;
+  height: 28px;
+  font-size: 0.75rem;
+}
+
+.freq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+.freq-item {
+  background: var(--bg-color);
+  padding: 10px 5px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+
+.freq-num {
+  display: block;
+  font-weight: 800;
+  color: var(--primary-color);
+}
+
+.freq-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.freq-bar-bg {
+  height: 4px;
+  background: #e2e8f0;
+  margin-top: 5px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.freq-bar {
+  height: 100%;
+  background: var(--secondary-color);
 }
 
 /* Footer */
