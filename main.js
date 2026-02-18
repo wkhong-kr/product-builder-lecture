@@ -1,4 +1,20 @@
 document.getElementById('generate-btn').addEventListener('click', generateLottoGames);
+const themeBtn = document.getElementById('theme-btn');
+
+// 테마 토글 로직
+themeBtn.addEventListener('click', () => {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  
+  document.documentElement.setAttribute('data-theme', newTheme);
+  themeBtn.innerText = newTheme === 'dark' ? '☀️ 라이트 모드' : '🌙 다크 모드';
+  localStorage.setItem('theme', newTheme);
+});
+
+// 초기 테마 설정 로드
+const savedTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+themeBtn.innerText = savedTheme === 'dark' ? '☀️ 라이트 모드' : '🌙 다크 모드';
 
 function generateLottoNumbers() {
   const numbers = [];

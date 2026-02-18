@@ -1,35 +1,77 @@
+:root {
+  --bg-color: #f0f2f5;
+  --container-bg: #ffffff;
+  --text-primary: #1a73e8;
+  --text-secondary: #5f6368;
+  --btn-bg: #1a73e8;
+  --btn-hover: #1557b0;
+  --set-bg: #f8f9fa;
+  --set-border: #e8eaed;
+  --transition-speed: 0.3s;
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --container-bg: #1e1e1e;
+  --text-primary: #8ab4f8;
+  --text-secondary: #bdc1c6;
+  --btn-bg: #8ab4f8;
+  --btn-hover: #aecbfa;
+  --set-bg: #2d2d2d;
+  --set-border: #3c4043;
+}
+
 body {
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-  background-color: #f0f2f5;
+  background-color: var(--bg-color);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   margin: 0;
+  transition: background-color var(--transition-speed);
 }
 
 .container {
-  background: white;
+  background: var(--container-bg);
   padding: 2rem;
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   text-align: center;
   width: 90%;
   max-width: 500px;
+  transition: background-color var(--transition-speed);
+}
+
+.theme-toggle {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+#theme-btn {
+  background: none;
+  border: 1px solid var(--set-border);
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  margin-bottom: 0;
 }
 
 h1 {
-  color: #1a73e8;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
+  transition: color var(--transition-speed);
 }
 
 p {
-  color: #5f6368;
+  color: var(--text-secondary);
   margin-bottom: 1.5rem;
+  transition: color var(--transition-speed);
 }
 
 button {
-  background-color: #1a73e8;
+  background-color: var(--btn-bg);
   color: white;
   border: none;
   padding: 12px 24px;
@@ -37,12 +79,16 @@ button {
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
   margin-bottom: 2rem;
 }
 
+[data-theme="dark"] button#generate-btn {
+    color: #202124;
+}
+
 button:hover {
-  background-color: #1557b0;
+  background-color: var(--btn-hover);
 }
 
 .results-container {
@@ -54,10 +100,11 @@ button:hover {
 .lotto-set {
   display: flex;
   justify-content: space-between;
-  background: #f8f9fa;
+  background: var(--set-bg);
   padding: 10px;
   border-radius: 12px;
-  border: 1px solid #e8eaed;
+  border: 1px solid var(--set-border);
+  transition: background-color var(--transition-speed), border-color var(--transition-speed);
 }
 
 .ball {
