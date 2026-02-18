@@ -96,14 +96,21 @@ function renderHistory() {
 function renderFrequency() {
   const freqGrid = document.getElementById('frequency-grid');
   if (!freqGrid) return;
+  
+  // 1~45번까지의 출현 횟수 예시 (통계적 유사치)
   const frequencies = Array.from({ length: 45 }, (_, i) => ({
     num: i + 1,
     count: 150 + Math.floor(Math.random() * 50)
   }));
+  
+  // 출현 횟수 내림차순으로 정렬
+  frequencies.sort((a, b) => b.count - a.count);
+  
   const maxCount = Math.max(...frequencies.map(f => f.count));
-  freqGrid.innerHTML = frequencies.map(f => `
+  freqGrid.innerHTML = frequencies.map((f, index) => `
     <div class="freq-item">
-      <span class="freq-num">${f.num}</span>
+      <div class="freq-rank">${index + 1}위</div>
+      <div class="ball ball-sm ${getBallClass(f.num)}" style="margin: 0 auto 8px;">${f.num}</div>
       <span class="freq-count">${f.count}회</span>
       <div class="freq-bar-bg"><div class="freq-bar" style="width: ${(f.count / maxCount) * 100}%"></div></div>
     </div>

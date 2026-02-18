@@ -295,10 +295,21 @@ button#generate-btn:hover {
 
 .freq-item {
   background: var(--bg-color);
-  padding: 10px 5px;
-  border-radius: 8px;
+  padding: 12px 8px;
+  border-radius: 12px;
   text-align: center;
   border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.freq-rank {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+  text-transform: uppercase;
 }
 
 .freq-num {
