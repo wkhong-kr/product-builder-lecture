@@ -90,6 +90,34 @@
       </a>
     </section>
 
+    <section class="reviews-section">
+      <h2>사용자 후기</h2>
+      <p>로또매니아를 이용하신 분들의 소중한 후기입니다.</p>
+      
+      <!-- 후기 작성 폼 -->
+      <div class="review-form-container">
+        <form id="review-form">
+          <div class="form-group">
+            <input type="text" id="reviewer-name" placeholder="닉네임" required>
+            <select id="reviewer-rating" required>
+              <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+              <option value="4">⭐⭐⭐⭐ (4/5)</option>
+              <option value="3">⭐⭐⭐ (3/5)</option>
+              <option value="2">⭐⭐ (2/5)</option>
+              <option value="1">⭐ (1/5)</option>
+            </select>
+          </div>
+          <textarea id="review-content" placeholder="사용 후기를 남겨주세요 (최소 5자 이상)" required minlength="5"></textarea>
+          <button type="submit" id="submit-review-btn">후기 등록하기</button>
+        </form>
+      </div>
+
+      <!-- 후기 리스트 -->
+      <div id="reviews-list" class="reviews-list">
+        <!-- 후기가 여기에 동적으로 추가됩니다. -->
+      </div>
+    </section>
+
     <div class="ad-container">
       <!-- 하단 광고 영역 -->
       <ins class="adsbygoogle"
