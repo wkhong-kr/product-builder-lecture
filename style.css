@@ -153,6 +153,32 @@ h1 {
   opacity: 0.9;
 }
 
+/* AdSense Containers */
+.ad-container {
+  margin: 2rem auto;
+  padding: 1rem;
+  background: var(--set-bg);
+  border: 1px dashed var(--set-border);
+  border-radius: 8px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ad-container::before {
+  content: "ADVERTISEMENT";
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
 /* Footer */
 button {
   background-color: var(--btn-bg);
