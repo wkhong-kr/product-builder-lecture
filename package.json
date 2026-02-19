@@ -1,7 +1,7 @@
 {
-  "name": "lotto-mania",
-  "version": "1.0.0",
+  "name": "lotto-mania-fix",
+  "version": "1.0.1",
   "scripts": {
-    "build": "mkdir -p dist && cp -r *.html *.css *.js dist/ || true"
+    "build": "mkdir -p dist && cp -rv ./*.html ./*.css ./*.js ./dist/ || true"
   }
 }
