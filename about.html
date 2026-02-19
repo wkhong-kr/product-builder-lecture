@@ -12,6 +12,7 @@
       <div class="logo">🍀 로또매니아</div>
       <ul class="nav-links">
         <li><a href="index.html">홈</a></li>
+        <li><a href="stats.html">통계 대시보드</a></li>
         <li><a href="about.html">소개</a></li>
         <li><a href="privacy.html">개인정보처리방침</a></li>
       </ul>
@@ -19,43 +20,86 @@
     </nav>
   </header>
 
-  <main class="container">
-    <section class="info-section">
-      <h1>사이트 소개</h1>
-      <p>로또매니아는 사용자들에게 즐거움과 편의를 제공하기 위해 만들어진 무료 로또 번호 생성 서비스입니다.</p>
-      
-      <div class="info-grid">
-        <div class="info-card">
-          <h3>우리의 미션</h3>
-          <p>복잡한 분석 없이도 누구나 쉽고 빠르게 행운의 번호를 얻을 수 있는 환경을 제공합니다.</p>
-        </div>
-        <div class="info-card">
-          <h3>신뢰성</h3>
-          <p>자바스크립트 기반의 강력한 난수 생성 알고리즘을 사용하여 매번 독립적인 번호를 생성합니다.</p>
-        </div>
+  <main class="container main-layout">
+    <div class="content-area">
+      <!-- 상단 광고 -->
+      <div class="ad-container ad-top">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+             data-ad-slot="5111111111"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
 
-      <div style="margin-top: 3rem;">
-        <h2>제공 서비스</h2>
-        <ul>
-          <li>로또 6/45 번호 5세트 자동 생성</li>
-          <li>로또 관련 최신 뉴스 및 정보 업데이트</li>
-          <li>다크 모드 지원으로 시력 보호 및 배터리 절약</li>
-        </ul>
+      <section class="info-section">
+        <h1>사이트 소개</h1>
+        <p>로또매니아는 사용자들에게 즐거움과 편의를 제공하기 위해 만들어진 무료 로또 번호 생성 서비스입니다.</p>
+        
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>우리의 미션</h3>
+            <p>복잡한 분석 없이도 누구나 쉽고 빠르게 행운의 번호를 얻을 수 있는 환경을 제공합니다.</p>
+          </div>
+          <div class="info-card">
+            <h3>신뢰성</h3>
+            <p>자바스크립트 기반의 강력한 난수 생성 알고리즘을 사용하여 매번 독립적인 번호를 생성합니다.</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 3rem;">
+          <h2>제공 서비스</h2>
+          <ul>
+            <li>로또 6/45 번호 5세트 자동 생성</li>
+            <li>로또 당첨 통계 및 명당 리스트 제공</li>
+            <li>다크 모드 지원으로 시력 보호</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 하단 광고 -->
+      <div class="ad-container ad-bottom">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+             data-ad-slot="5333333333"
+             data-ad-format="autorelaxed"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
-    </section>
+    </div>
+
+    <!-- 사이드바 -->
+    <aside class="sidebar">
+      <div class="sticky-sidebar">
+        <div class="ad-container ad-sidebar">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+               data-ad-slot="5444444444"
+               data-ad-format="vertical"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+        
+        <div class="sidebar-info-card">
+          <h3>📣 소식</h3>
+          <p>새로운 당첨 통계 기능이 추가되었습니다!</p>
+          <a href="stats.html" class="button-link" style="background: white !important; color: var(--primary-color) !important; width: 100%; text-align: center; box-sizing: border-box;">통계 확인하기</a>
+        </div>
+      </div>
+    </aside>
   </main>
 
-  <footer>
+  <footer style="background: var(--primary-color); color: white; padding: 4rem 1.5rem; text-align: center; margin-top: 4rem;">
     <div class="footer-content">
       <p>&copy; 2026 로또매니아. All rights reserved.</p>
-      <ul class="footer-links">
-        <li><a href="index.html">홈으로</a></li>
-        <li><a href="privacy.html">개인정보처리방침</a></li>
-        <li><a href="contact.html">문의하기</a></li>
+      <ul class="footer-links" style="list-style: none; display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; padding: 0;">
+        <li><a href="stats.html" style="color: #f6ad55; text-decoration: none;">당첨 통계 대시보드</a></li>
+        <li><a href="privacy.html" style="color: rgba(255,255,255,0.6); text-decoration: none;">개인정보처리방침</a></li>
       </ul>
     </div>
   </footer>
+
   <script src="main.js"></script>
 </body>
 </html>

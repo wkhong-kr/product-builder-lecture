@@ -9,31 +9,29 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-    body { font-family: 'Pretendard', sans-serif; background-color: #f8fafc; color: #1e293b; margin: 0; }
-    .stats-container { max-width: 1100px; margin: 2rem auto; padding: 0 1.5rem; }
     
     /* 차트 섹션 */
-    .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
-    .chart-card { background: white; padding: 1.5rem; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-    .chart-card h3 { display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; color: #1a365d; font-size: 1.1rem; }
-    .chart-wrapper { position: relative; height: 250px; width: 100%; }
+    .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .chart-card { background: var(--card-bg); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+    .chart-card h3 { display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; color: var(--primary-color); font-size: 1.1rem; }
+    .chart-wrapper { position: relative; height: 220px; width: 100%; }
     
     /* 명당 섹션 개선 */
-    .store-section { background: white; padding: 2rem; border-radius: 20px; border: 1px solid #e2e8f0; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+    .store-section { background: var(--card-bg); padding: 2rem; border-radius: 20px; border: 1px solid var(--border-color); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
     .filter-group { display: flex; gap: 10px; margin-bottom: 1.5rem; flex-wrap: wrap; }
-    .search-input { flex: 1; min-width: 200px; padding: 12px 16px; border: 1.5px solid #e2e8f0; border-radius: 10px; outline: none; transition: border-color 0.2s; }
+    .search-input { flex: 1; min-width: 200px; padding: 12px 16px; border: 1.5px solid var(--border-color); border-radius: 10px; outline: none; transition: border-color 0.2s; background: var(--bg-color); color: var(--text-main); }
     .search-input:focus { border-color: #3b82f6; }
-    .region-select { padding: 12px 16px; border: 1.5px solid #e2e8f0; border-radius: 10px; background: white; cursor: pointer; }
+    .region-select { padding: 12px 16px; border: 1.5px solid var(--border-color); border-radius: 10px; background: var(--bg-color); color: var(--text-main); cursor: pointer; }
 
     /* 테이블 레이아웃 최적화 */
-    .table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid #f1f5f9; background: white; margin-bottom: 1.5rem; }
-    .store-table { width: 100%; border-collapse: collapse; min-width: 800px; table-layout: fixed; }
-    .store-table th { background: #f8fafc; padding: 15px; text-align: left; font-weight: 700; color: #475569; font-size: 0.9rem; border-bottom: 2px solid #e2e8f0; }
-    .store-table td { padding: 15px; border-bottom: 1px solid #f1f5f9; font-size: 0.95rem; vertical-align: middle; }
-    .store-table tr:hover { background-color: #fcfcfd; }
+    .table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border-color); background: var(--card-bg); margin-bottom: 1.5rem; }
+    .store-table { width: 100%; border-collapse: collapse; min-width: 700px; table-layout: fixed; }
+    .store-table th { background: var(--bg-color); padding: 15px; text-align: left; font-weight: 700; color: var(--text-muted); font-size: 0.9rem; border-bottom: 2px solid var(--border-color); }
+    .store-table td { padding: 15px; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; vertical-align: middle; color: var(--text-main); }
+    .store-table tr:hover { background-color: rgba(0,0,0,0.02); }
     
     /* 주소 링크 스타일 */
-    .address-link { color: #64748b; text-decoration: none; display: flex; align-items: center; gap: 5px; transition: color 0.2s; }
+    .address-link { color: var(--text-muted); text-decoration: none; display: flex; align-items: center; gap: 5px; transition: color 0.2s; }
     .address-link:hover { color: #2563eb; text-decoration: underline; }
     
     /* 프리미엄 배지 스타일 */
@@ -42,12 +40,12 @@
     .rank-2 { background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%); color: #475569; box-shadow: 0 2px 4px rgba(203, 213, 225, 0.3); border: 1px solid #94a3b8; }
     .rank-3 { background: linear-gradient(135deg, #fdba74 0%, #f97316 100%); color: #7c2d12; box-shadow: 0 2px 4px rgba(249, 115, 22, 0.3); border: 1px solid #ea580c; }
     
-    .region-badge { display: inline-block; padding: 4px 10px; background: #f1f5f9; color: #475569; border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
+    .region-badge { display: inline-block; padding: 4px 10px; background: var(--bg-color); color: var(--text-muted); border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
     .count-badge { display: inline-block; padding: 4px 12px; background: #eff6ff; color: #2563eb; border-radius: 20px; font-size: 0.85rem; font-weight: 700; white-space: nowrap; }
     
     /* 페이지네이션 */
     .pagination { display: flex; justify-content: center; gap: 5px; margin-top: 2rem; }
-    .page-btn { padding: 8px 14px; border: 1px solid #e2e8f0; background: white; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; color: #64748b; transition: all 0.2s; }
+    .page-btn { padding: 8px 14px; border: 1px solid var(--border-color); background: var(--card-bg); border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; color: var(--text-muted); transition: all 0.2s; }
     .page-btn:hover:not(.disabled) { border-color: #3b82f6; color: #3b82f6; background: #eff6ff; }
     .page-btn.active { background: #3b82f6; color: white; border-color: #3b82f6; }
     .page-btn.disabled { opacity: 0.5; cursor: not-allowed; }
@@ -56,85 +54,149 @@
   </style>
 </head>
 <body>
-  <header style="background: #1a365d; color: white; padding: 1.2rem 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-    <nav class="nav-container" style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 1.5rem;">
-      <a href="index.html" style="color: white; text-decoration: none; font-size: 1.4rem; font-weight: 800; display: flex; align-items: center; gap: 8px;">
-        <span>🍀</span> 로또매니아 통계
-      </a>
-      <a href="index.html" style="color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; font-size: 0.95rem;">홈으로 돌아가기</a>
+  <header>
+    <nav class="nav-container">
+      <div class="logo">🍀 로또매니아 통계</div>
+      <ul class="nav-links">
+        <li><a href="index.html">홈</a></li>
+        <li><a href="stats.html">통계 대시보드</a></li>
+        <li><a href="about.html">소개</a></li>
+        <li><a href="privacy.html">개인정보처리방침</a></li>
+      </ul>
+      <button id="theme-btn">🌙</button>
     </nav>
   </header>
 
-  <main class="stats-container">
-    <div style="text-align: center; margin-bottom: 3.5rem;">
-      <h1 style="font-size: 2.4rem; color: #1a365d; margin-bottom: 0.5rem; letter-spacing: -1px;">📊 당첨 확률 분석 대시보드</h1>
-      <p style="color: #64748b; font-size: 1.1rem;">전국 모든 1등 배출 점포와 확률 통계를 한눈에 확인하세요.</p>
-    </div>
+  <main class="container main-layout">
+    <div class="content-area">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <h1 style="font-size: 2rem; color: var(--primary-color); margin-bottom: 0.5rem;">📊 당첨 확률 분석 대시보드</h1>
+        <p style="color: var(--text-muted);">전국 1등 배출 점포와 확률 통계를 확인하세요.</p>
+      </div>
 
-    <div class="dashboard-grid">
-      <div class="chart-card">
-        <h3><i data-lucide="calendar"></i> 요일별 당첨 비중</h3>
-        <div class="chart-wrapper"><canvas id="dayChart"></canvas></div>
+      <!-- 상단 광고 -->
+      <div class="ad-container ad-top">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+             data-ad-slot="1111111111"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
-      <div class="chart-card">
-        <h3><i data-lucide="clock"></i> 시간대별 당첨 비중</h3>
-        <div class="chart-wrapper"><canvas id="hourChart"></canvas></div>
-      </div>
-      <div class="chart-card">
-        <h3><i data-lucide="pie-chart"></i> 자동/수동 당첨 비율</h3>
-        <div class="chart-wrapper"><canvas id="ratioChart"></canvas></div>
-      </div>
-    </div>
 
-    <section class="store-section">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
-        <h2 style="display: flex; align-items: center; gap: 10px; margin: 0; color: #1a365d;"><i data-lucide="map-pin" style="color: #ef4444;"></i> 전국 로또 1등 명당 리스트</h2>
-        <div class="filter-group" style="margin-bottom: 0;">
-          <select id="regionFilter" class="region-select">
-            <option value="전체">전국 전체</option>
-            <option value="서울">서울</option><option value="경기">경기</option>
-            <option value="부산">부산</option><option value="대구">대구</option>
-            <option value="인천">인천</option><option value="광주">광주</option>
-            <option value="대전">대전</option><option value="울산">울산</option>
-            <option value="강원">강원</option><option value="충북">충북</option>
-            <option value="충남">충남</option><option value="전북">전북</option>
-            <option value="전남">전남</option><option value="경북">경북</option>
-            <option value="경남">경남</option><option value="제주">제주</option>
-          </select>
-          <input type="text" id="storeSearch" class="search-input" placeholder="상호명 또는 주소 검색...">
+      <div class="dashboard-grid">
+        <div class="chart-card">
+          <h3><i data-lucide="calendar"></i> 요일별 비중</h3>
+          <div class="chart-wrapper"><canvas id="dayChart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3><i data-lucide="clock"></i> 시간대별 비중</h3>
+          <div class="chart-wrapper"><canvas id="hourChart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3><i data-lucide="pie-chart"></i> 자동/수동 비율</h3>
+          <div class="chart-wrapper"><canvas id="ratioChart"></canvas></div>
         </div>
       </div>
 
-      <div class="table-wrapper">
-        <table class="store-table">
-          <thead>
-            <tr>
-              <th style="width: 60px;">순위</th>
-              <th style="width: 180px;">상호명</th>
-              <th style="width: 120px;">1등 당첨</th>
-              <th style="width: 100px;">지역</th>
-              <th>상세 주소 (클릭 시 지도 보기 🗺️)</th>
-            </tr>
-          </thead>
-          <tbody id="storeTableBody"></tbody>
-        </table>
-        <div id="noResult" class="no-result" style="display: none;">검색 결과가 없습니다.</div>
+      <!-- 중간 광고 -->
+      <div class="ad-container ad-mid">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-format="fluid"
+             data-ad-layout-key="-fb+5w+4e-db+86"
+             data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+             data-ad-slot="2222222222"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
-      
-      <div id="pagination" class="pagination"></div>
-    </section>
+
+      <section class="store-section">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+          <h2 style="display: flex; align-items: center; gap: 10px; margin: 0; color: var(--primary-color); font-size: 1.5rem;"><i data-lucide="map-pin" style="color: #ef4444;"></i> 전국 명당 리스트</h2>
+          <div class="filter-group" style="margin-bottom: 0;">
+            <select id="regionFilter" class="region-select">
+              <option value="전체">전국 전체</option>
+              <option value="서울">서울</option><option value="경기">경기</option>
+              <option value="부산">부산</option><option value="대구">대구</option>
+              <option value="인천">인천</option><option value="광주">광주</option>
+              <option value="대전">대전</option><option value="울산">울산</option>
+              <option value="강원">강원</option><option value="충북">충북</option>
+              <option value="충남">충남</option><option value="전북">전북</option>
+              <option value="전남">전남</option><option value="경북">경북</option>
+              <option value="경남">경남</option><option value="제주">제주</option>
+            </select>
+            <input type="text" id="storeSearch" class="search-input" placeholder="상호명 또는 주소 검색...">
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="store-table">
+            <thead>
+              <tr>
+                <th style="width: 60px;">순위</th>
+                <th style="width: 150px;">상호명</th>
+                <th style="width: 100px;">1등</th>
+                <th style="width: 80px;">지역</th>
+                <th>상세 주소</th>
+              </tr>
+            </thead>
+            <tbody id="storeTableBody"></tbody>
+          </table>
+          <div id="noResult" class="no-result" style="display: none;">검색 결과가 없습니다.</div>
+        </div>
+        
+        <div id="pagination" class="pagination"></div>
+      </section>
+
+      <!-- 하단 광고 -->
+      <div class="ad-container ad-bottom">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+             data-ad-slot="3333333333"
+             data-ad-format="autorelaxed"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+    </div>
+
+    <!-- 사이드바 광고 -->
+    <aside class="sidebar">
+      <div class="sticky-sidebar">
+        <div class="ad-container ad-sidebar">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+               data-ad-slot="4444444444"
+               data-ad-format="vertical"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+        
+        <div class="sidebar-info-card">
+          <h3>🔔 알림</h3>
+          <p>로또 당첨 데이터는 매주 토요일 추첨 직후 업데이트됩니다.</p>
+          <a href="index.html" class="button-link" style="background: white !important; color: var(--primary-color) !important; width: 100%; text-align: center; box-sizing: border-box;">번호 생성하러 가기</a>
+        </div>
+      </div>
+    </aside>
   </main>
 
-  <footer style="margin-top: 6rem; padding: 4rem 1.5rem; text-align: center; color: #94a3b8; background: #f8fafc; border-top: 1px solid #e2e8f0;">
-    <p>&copy; 2026 로또매니아 통계 센터. 데이터는 매주 업데이트됩니다.</p>
+  <footer style="background: var(--primary-color); color: white; padding: 4rem 1.5rem; text-align: center; margin-top: 4rem;">
+    <div class="footer-content">
+      <p>&copy; 2026 로또매니아. All rights reserved.</p>
+      <ul class="footer-links" style="list-style: none; display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; padding: 0;">
+        <li><a href="stats.html" style="color: #f6ad55; text-decoration: none;">당첨 통계 대시보드</a></li>
+        <li><a href="privacy.html" style="color: rgba(255,255,255,0.6); text-decoration: none;">개인정보처리방침</a></li>
+      </ul>
+    </div>
   </footer>
 
+  <script src="main.js"></script>
   <script>
     const DAY_DATA = { labels: ['월', '화', '수', '목', '금', '토'], values: [12.5, 11.2, 13.8, 14.1, 18.4, 30.0] };
-    const HOUR_DATA = { labels: ['09~12시', '12~15시', '15~18시', '18~21시'], values: [15, 22, 35, 28] };
+    const HOUR_DATA = { labels: ['09~12', '12~15', '15~18', '18~21'], values: [15, 22, 35, 28] };
     const RATIO_DATA = { labels: ['자동', '수동', '반자동'], values: [68.5, 26.3, 5.2] };
     
-    // 전국 명당 데이터 대폭 보강 (전국구 시뮬레이션 데이터)
     const STORES = [
       { name: '스파', count: 50, region: '서울', address: '서울 노원구 동일로 1493 상계주공아파트' },
       { name: '부일카서비스', count: 42, region: '부산', address: '부산 동구 자성로133번길 35' },
@@ -175,12 +237,12 @@
     const itemsPerPage = 20;
     let filteredStores = [...STORES];
 
-    function init() {
+    function initCharts() {
       lucide.createIcons();
-      const chartOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: '#f1f5f9' }, ticks: { font: { size: 11 } } }, x: { grid: { display: false }, ticks: { font: { size: 11 } } } } };
-      new Chart(document.getElementById('dayChart'), { type: 'bar', data: { labels: DAY_DATA.labels, datasets: [{ data: DAY_DATA.values, backgroundColor: '#3b82f6', borderRadius: 8 }] }, options: chartOptions });
+      const chartOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: '#f1f5f9' }, ticks: { font: { size: 10 } } }, x: { grid: { display: false }, ticks: { font: { size: 10 } } } } };
+      new Chart(document.getElementById('dayChart'), { type: 'bar', data: { labels: DAY_DATA.labels, datasets: [{ data: DAY_DATA.values, backgroundColor: '#3b82f6', borderRadius: 6 }] }, options: chartOptions });
       new Chart(document.getElementById('hourChart'), { type: 'line', data: { labels: HOUR_DATA.labels, datasets: [{ data: HOUR_DATA.values, borderColor: '#f59e0b', tension: 0.4, fill: true, backgroundColor: 'rgba(245, 158, 11, 0.05)' }] }, options: chartOptions });
-      new Chart(document.getElementById('ratioChart'), { type: 'doughnut', data: { labels: RATIO_DATA.labels, datasets: [{ data: RATIO_DATA.values, backgroundColor: ['#3b82f6', '#10b981', '#f59e0b'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } } } });
+      new Chart(document.getElementById('ratioChart'), { type: 'doughnut', data: { labels: RATIO_DATA.labels, datasets: [{ data: RATIO_DATA.values, backgroundColor: ['#3b82f6', '#10b981', '#f59e0b'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } } } });
       
       updateList();
     }
@@ -225,8 +287,8 @@
         return `
           <tr>
             <td><span class="rank-badge ${rankClass}">${rank}</span></td>
-            <td style="font-weight:700; color:#1e3a8a;">${s.name}</td>
-            <td><span class="count-badge">${s.count}회 당첨</span></td>
+            <td style="font-weight:700; color:var(--primary-color);">${s.name}</td>
+            <td><span class="count-badge">${s.count}회</span></td>
             <td><span class="region-badge">${s.region}</span></td>
             <td>
               <a href="https://map.kakao.com/?q=${encodeURIComponent(s.address)}" target="_blank" class="address-link">
@@ -264,7 +326,7 @@
 
     document.getElementById('storeSearch').addEventListener('input', updateList);
     document.getElementById('regionFilter').addEventListener('change', updateList);
-    window.onload = init;
+    window.onload = initCharts;
   </script>
 </body>
 </html>
