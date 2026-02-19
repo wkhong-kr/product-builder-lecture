@@ -1,0 +1,7 @@
+{
+  "name": "lotto-mania",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "mkdir -p dist && cp -r *.html *.css *.js dist/ || true"
+  }
+}
