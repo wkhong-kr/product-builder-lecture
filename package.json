@@ -1,7 +1,0 @@
-{
-  "name": "lotto-mania-total-fix",
-  "version": "3.0.0",
-  "scripts": {
-    "build": "for dir in dist build out public static; do mkdir -p $dir && cp -rv *.html *.css *.js $dir/ || true; done"
-  }
-}
