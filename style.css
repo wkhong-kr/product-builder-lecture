@@ -11,7 +11,7 @@
   --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 1. 전역 박스 모델 안정화 (삐져나감 방지) */
+/* 전역 박스 모델 안정화 */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -56,8 +56,8 @@ header {
   padding: 0 1.5rem;
 }
 
-.logo { font-size: 1.4rem; font-weight: 800; color: white; text-decoration: none; }
-.nav-links { list-style: none; display: flex; gap: 1.5rem; }
+.logo { font-size: 1.4rem; font-weight: 800; color: white; text-decoration: none; white-space: nowrap; }
+.nav-links { list-style: none; display: flex; gap: 1.5rem; white-space: nowrap; }
 .nav-links a { color: rgba(255, 255, 255, 0.8); text-decoration: none; font-weight: 600; }
 
 #theme-btn {
@@ -105,15 +105,15 @@ section {
 }
 
 .generator-section { text-align: center; border-top: 6px solid var(--secondary-color); }
-.generator-section h1 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 1rem; }
+.generator-section h1 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 1rem; white-space: nowrap; }
 
-/* Buttons Fix */
+/* Buttons */
 .main-buttons {
   display: flex;
   gap: 1rem;
   justify-content: center;
-  margin: 2.5rem 0;
-  flex-wrap: wrap;
+  margin: 2rem 0;
+  flex-wrap: nowrap; /* 줄바꿈 금지 */
 }
 
 button#generate-btn {
@@ -125,6 +125,7 @@ button#generate-btn {
   border: none;
   border-radius: 16px;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .stats-btn {
@@ -139,22 +140,26 @@ button#generate-btn {
   border: 1px solid #bfdbfe;
   border-radius: 16px;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 /* Results Display */
 .lotto-set {
   background: var(--bg-color);
-  padding: 1.2rem;
+  padding: 1rem;
   border-radius: 50px;
   margin-bottom: 1.2rem;
   display: flex;
   justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 10px;
+  flex-wrap: nowrap; /* 번호 줄바꿈 절대 방지 */
+  overflow-x: hidden;
 }
 
 .ball {
-  width: 46px; height: 46px;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0; /* 공 크기 줄어들지 않게 고정 */
   border-radius: 50%;
   display: flex; justify-content: center; align-items: center;
   color: white; font-weight: 800; font-size: 1.1rem;
@@ -167,27 +172,28 @@ button#generate-btn {
 .ball-31 { background: radial-gradient(circle at 30% 30%, #94a3b8, #475569); }
 .ball-41 { background: radial-gradient(circle at 30% 30%, #4ade80, #16a34a); }
 
-/* History Table Fix */
+/* History Table */
 .history-table { width: 100%; border-collapse: collapse; }
-.history-table th, .history-table td { padding: 15px 10px; border-bottom: 1px solid var(--border-color); text-align: center; }
-.history-balls { display: flex; gap: 8px; justify-content: center; }
-.ball-sm { width: 32px; height: 32px; font-size: 0.85rem; font-weight: 700; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; }
+.history-table th, .history-table td { padding: 15px 8px; border-bottom: 1px solid var(--border-color); text-align: center; }
+.history-balls { display: flex; gap: 6px; justify-content: center; flex-wrap: nowrap; } /* 줄바꿈 금지 */
+.ball-sm { width: 30px; height: 32px; flex-shrink: 0; font-size: 0.85rem; font-weight: 700; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; }
 
-/* Frequency Grid Fix (핵심) */
+/* Frequency Grid */
 .freq-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
   gap: 12px;
 }
 
 .freq-item {
   background: var(--bg-color);
-  padding: 12px 8px;
+  padding: 12px 5px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 1px solid var(--border-color);
+  white-space: nowrap; /* 내부 텍스트 줄바꿈 방지 */
 }
 
 /* Footer */
@@ -195,23 +201,47 @@ footer { background: #0f172a; color: white; padding: 4rem 1.5rem; text-align: ce
 .footer-links { list-style: none; display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.5rem; }
 .footer-links a { color: #94a3b8; text-decoration: none; }
 
-/* Responsive Optimization (Mobile) */
+/* Responsive (Mobile) */
 @media (max-width: 992px) {
   .main-layout { grid-template-columns: 1fr; }
   .sidebar { display: none; }
 }
 
 @media (max-width: 768px) {
-  .container { padding: 0 1rem; margin: 1rem auto; }
+  .container { padding: 0 0.8rem; margin: 1rem auto; }
   .nav-container { flex-direction: column; gap: 0.8rem; }
+  .nav-links { gap: 0.8rem; font-size: 0.85rem; }
   
-  .main-buttons { flex-direction: column; width: 100%; }
-  button#generate-btn, .stats-btn { width: 100% !important; padding: 1rem !important; }
+  /* 버튼 줄바꿈 방지 및 크기 최적화 */
+  .main-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
   
-  .history-balls { gap: 4px; flex-wrap: wrap; }
-  .ball-sm { width: 26px; height: 26px; font-size: 0.75rem; }
+  button#generate-btn, .stats-btn {
+    width: 100% !important;
+    padding: 0.8rem !important;
+    font-size: 1.1rem !important;
+  }
+  
+  /* 공 사이즈 축소하여 한 줄에 맞춤 */
+  .lotto-set { gap: 5px; padding: 0.8rem; }
+  .ball { width: 38px; height: 38px; font-size: 1rem; }
 
-  .freq-grid { grid-template-columns: repeat(auto-fill, minmax(55px, 1fr)); gap: 8px; }
-  section { padding: 1.5rem 1rem; }
-  .generator-section h1 { font-size: 1.6rem; }
+  .history-table th, .history-table td { padding: 12px 4px; font-size: 0.8rem; }
+  .history-balls { gap: 3px; }
+  .ball-sm { width: 25px; height: 25px; font-size: 0.7rem; }
+
+  .freq-grid { grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 8px; }
+  .freq-item { padding: 8px 4px; font-size: 0.75rem; }
+
+  section { padding: 1.2rem 0.8rem; }
+  .generator-section h1 { font-size: 1.5rem; }
+}
+
+/* 아주 작은 화면 (320px 등) 대응 */
+@media (max-width: 360px) {
+  .ball { width: 34px; height: 38px; font-size: 0.9rem; }
+  .ball-sm { width: 22px; height: 22px; font-size: 0.65rem; }
+  .nav-links { gap: 0.5rem; font-size: 0.75rem; }
 }
