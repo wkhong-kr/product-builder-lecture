@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,7 +10,7 @@
   <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
     body { font-family: 'Pretendard', sans-serif; background-color: #f8fafc; color: #1e293b; margin: 0; }
-    .stats-container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+    .stats-container { max-width: 1100px; margin: 2rem auto; padding: 0 1.5rem; }
     
     /* 차트 섹션 */
     .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
@@ -27,27 +26,38 @@
     .region-select { padding: 12px 16px; border: 1.5px solid #e2e8f0; border-radius: 10px; background: white; cursor: pointer; }
 
     /* 테이블 레이아웃 최적화 */
-    .table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid #f1f5f9; background: white; }
+    .table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid #f1f5f9; background: white; margin-bottom: 1.5rem; }
     .store-table { width: 100%; border-collapse: collapse; min-width: 800px; table-layout: fixed; }
     .store-table th { background: #f8fafc; padding: 15px; text-align: left; font-weight: 700; color: #475569; font-size: 0.9rem; border-bottom: 2px solid #e2e8f0; }
     .store-table td { padding: 15px; border-bottom: 1px solid #f1f5f9; font-size: 0.95rem; vertical-align: middle; }
+    .store-table tr:hover { background-color: #fcfcfd; }
     
     /* 주소 링크 스타일 */
     .address-link { color: #64748b; text-decoration: none; display: flex; align-items: center; gap: 5px; transition: color 0.2s; }
     .address-link:hover { color: #2563eb; text-decoration: underline; }
-    .map-icon { color: #94a3b8; font-size: 0.8rem; }
     
-    /* 배지 스타일 */
-    .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: #f6ad55; color: #1a365d; border-radius: 6px; font-weight: 800; font-size: 0.75rem; }
+    /* 프리미엄 배지 스타일 */
+    .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 8px; font-weight: 800; font-size: 0.8rem; color: #475569; background: #f1f5f9; }
+    .rank-1 { background: linear-gradient(135deg, #fcd34d 0%, #fbbf24 100%); color: #92400e; box-shadow: 0 2px 4px rgba(251, 191, 36, 0.3); border: 1px solid #f59e0b; }
+    .rank-2 { background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%); color: #475569; box-shadow: 0 2px 4px rgba(203, 213, 225, 0.3); border: 1px solid #94a3b8; }
+    .rank-3 { background: linear-gradient(135deg, #fdba74 0%, #f97316 100%); color: #7c2d12; box-shadow: 0 2px 4px rgba(249, 115, 22, 0.3); border: 1px solid #ea580c; }
+    
     .region-badge { display: inline-block; padding: 4px 10px; background: #f1f5f9; color: #475569; border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
     .count-badge { display: inline-block; padding: 4px 12px; background: #eff6ff; color: #2563eb; border-radius: 20px; font-size: 0.85rem; font-weight: 700; white-space: nowrap; }
     
+    /* 페이지네이션 */
+    .pagination { display: flex; justify-content: center; gap: 5px; margin-top: 2rem; }
+    .page-btn { padding: 8px 14px; border: 1px solid #e2e8f0; background: white; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; color: #64748b; transition: all 0.2s; }
+    .page-btn:hover:not(.disabled) { border-color: #3b82f6; color: #3b82f6; background: #eff6ff; }
+    .page-btn.active { background: #3b82f6; color: white; border-color: #3b82f6; }
+    .page-btn.disabled { opacity: 0.5; cursor: not-allowed; }
+
     .no-result { text-align: center; padding: 40px; color: #94a3b8; }
   </style>
 </head>
 <body>
   <header style="background: #1a365d; color: white; padding: 1.2rem 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-    <nav class="nav-container" style="max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 1.5rem;">
+    <nav class="nav-container" style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 1.5rem;">
       <a href="index.html" style="color: white; text-decoration: none; font-size: 1.4rem; font-weight: 800; display: flex; align-items: center; gap: 8px;">
         <span>🍀</span> 로또매니아 통계
       </a>
@@ -58,7 +68,7 @@
   <main class="stats-container">
     <div style="text-align: center; margin-bottom: 3.5rem;">
       <h1 style="font-size: 2.4rem; color: #1a365d; margin-bottom: 0.5rem; letter-spacing: -1px;">📊 당첨 확률 분석 대시보드</h1>
-      <p style="color: #64748b; font-size: 1.1rem;">빅데이터로 분석한 가장 유리한 발권 요일과 시간대를 확인하세요.</p>
+      <p style="color: #64748b; font-size: 1.1rem;">전국 모든 1등 배출 점포와 확률 통계를 한눈에 확인하세요.</p>
     </div>
 
     <div class="dashboard-grid">
@@ -78,20 +88,20 @@
 
     <section class="store-section">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
-        <h2 style="display: flex; align-items: center; gap: 10px; margin: 0; color: #1a365d;"><i data-lucide="map-pin" style="color: #ef4444;"></i> 전국 로또 1등 명당 지도</h2>
+        <h2 style="display: flex; align-items: center; gap: 10px; margin: 0; color: #1a365d;"><i data-lucide="map-pin" style="color: #ef4444;"></i> 전국 로또 1등 명당 리스트</h2>
         <div class="filter-group" style="margin-bottom: 0;">
           <select id="regionFilter" class="region-select">
             <option value="전체">전국 전체</option>
-            <option value="서울">서울</option>
-            <option value="경기">경기</option>
-            <option value="부산">부산</option>
-            <option value="대구">대구</option>
-            <option value="경남">경남</option>
-            <option value="인천">인천</option>
-            <option value="강원">강원</option>
-            <option value="충남">충남</option>
+            <option value="서울">서울</option><option value="경기">경기</option>
+            <option value="부산">부산</option><option value="대구">대구</option>
+            <option value="인천">인천</option><option value="광주">광주</option>
+            <option value="대전">대전</option><option value="울산">울산</option>
+            <option value="강원">강원</option><option value="충북">충북</option>
+            <option value="충남">충남</option><option value="전북">전북</option>
+            <option value="전남">전남</option><option value="경북">경북</option>
+            <option value="경남">경남</option><option value="제주">제주</option>
           </select>
-          <input type="text" id="storeSearch" class="search-input" placeholder="상호명 검색...">
+          <input type="text" id="storeSearch" class="search-input" placeholder="상호명 또는 주소 검색...">
         </div>
       </div>
 
@@ -99,10 +109,10 @@
         <table class="store-table">
           <thead>
             <tr>
-              <th style="width: 50px;">순위</th>
-              <th style="width: 160px;">상호명</th>
-              <th style="width: 100px;">1등 횟수</th>
-              <th style="width: 80px;">지역</th>
+              <th style="width: 60px;">순위</th>
+              <th style="width: 180px;">상호명</th>
+              <th style="width: 120px;">1등 당첨</th>
+              <th style="width: 100px;">지역</th>
               <th>상세 주소 (클릭 시 지도 보기 🗺️)</th>
             </tr>
           </thead>
@@ -110,6 +120,8 @@
         </table>
         <div id="noResult" class="no-result" style="display: none;">검색 결과가 없습니다.</div>
       </div>
+      
+      <div id="pagination" class="pagination"></div>
     </section>
   </main>
 
@@ -122,7 +134,7 @@
     const HOUR_DATA = { labels: ['09~12시', '12~15시', '15~18시', '18~21시'], values: [15, 22, 35, 28] };
     const RATIO_DATA = { labels: ['자동', '수동', '반자동'], values: [68.5, 26.3, 5.2] };
     
-    // 전국 명당 데이터 대폭 보강 (20곳)
+    // 전국 명당 데이터 대폭 보강 (전국구 시뮬레이션 데이터)
     const STORES = [
       { name: '스파', count: 50, region: '서울', address: '서울 노원구 동일로 1493 상계주공아파트' },
       { name: '부일카서비스', count: 42, region: '부산', address: '부산 동구 자성로133번길 35' },
@@ -143,63 +155,115 @@
       { name: '나눔로또', count: 9, region: '서울', address: '서울 강남구 테헤란로 123' },
       { name: '드림로또', count: 9, region: '경기', address: '경기 수원시 팔달구 매산로 2' },
       { name: '희망복권', count: 8, region: '전남', address: '전남 목포시 영산로 25' },
-      { name: '행복충전소', count: 8, region: '울산', address: '울산 남구 삼산로 150' }
-    ];
+      { name: '행복충전소', count: 8, region: '울산', address: '울산 남구 삼산로 150' },
+      { name: '제주복권방', count: 7, region: '제주', address: '제주 제주시 중앙로 1' },
+      { name: '광주로또', count: 7, region: '광주', address: '광주 북구 무등로 200' },
+      { name: '충북행운', count: 6, region: '충북', address: '충북 청주시 상당구 10' },
+      { name: '전북대박', count: 6, region: '전북', address: '전북 전주시 완산구 5' },
+      { name: '인천대길', count: 5, region: '인천', address: '인천 남동구 인주대로 100' },
+      { name: '부산대박', count: 5, region: '부산', address: '부산 해운대구 중동 1' },
+      { name: '서울로또파크', count: 4, region: '서울', address: '서울 마포구 양화로 10' },
+      { name: '경기드림', count: 4, region: '경기', address: '경기 고양시 일산동구 20' },
+      { name: '경북로또팡', count: 3, region: '경북', address: '경북 포항시 북구 30' },
+      { name: '강원행운권', count: 3, region: '강원', address: '강원 원주시 원일로 50' },
+      { name: '대전로또세상', count: 2, region: '대전', address: '대전 유성구 대학로 80' },
+      { name: '울산황금손', count: 2, region: '울산', address: '울산 중구 번영로 120' },
+      { name: '제주드림', count: 1, region: '제주', address: '제주 서귀포시 중정로 5' }
+    ].sort((a,b) => b.count - a.count);
+
+    let currentPage = 1;
+    const itemsPerPage = 20;
+    let filteredStores = [...STORES];
 
     function init() {
       lucide.createIcons();
-      // 차트 디자인 커스텀
-      const chartOptions = { 
-        responsive: true, 
-        maintainAspectRatio: false, 
-        plugins: { legend: { display: false } }, 
-        scales: { y: { beginAtZero: true, grid: { color: '#f1f5f9' }, ticks: { font: { size: 11 } } }, x: { grid: { display: false }, ticks: { font: { size: 11 } } } } 
-      };
-      
+      const chartOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: '#f1f5f9' }, ticks: { font: { size: 11 } } }, x: { grid: { display: false }, ticks: { font: { size: 11 } } } } };
       new Chart(document.getElementById('dayChart'), { type: 'bar', data: { labels: DAY_DATA.labels, datasets: [{ data: DAY_DATA.values, backgroundColor: '#3b82f6', borderRadius: 8 }] }, options: chartOptions });
       new Chart(document.getElementById('hourChart'), { type: 'line', data: { labels: HOUR_DATA.labels, datasets: [{ data: HOUR_DATA.values, borderColor: '#f59e0b', tension: 0.4, fill: true, backgroundColor: 'rgba(245, 158, 11, 0.05)' }] }, options: chartOptions });
       new Chart(document.getElementById('ratioChart'), { type: 'doughnut', data: { labels: RATIO_DATA.labels, datasets: [{ data: RATIO_DATA.values, backgroundColor: ['#3b82f6', '#10b981', '#f59e0b'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } } } });
       
+      updateList();
+    }
+
+    function updateList() {
+      const query = document.getElementById('storeSearch').value.toLowerCase();
+      const region = document.getElementById('regionFilter').value;
+      
+      filteredStores = STORES.filter(s => {
+        const matchRegion = (region === '전체' || s.region === region);
+        const matchName = s.name.toLowerCase().includes(query) || s.address.toLowerCase().includes(query);
+        return matchRegion && matchName;
+      });
+
+      currentPage = 1;
       renderStores();
     }
 
     function renderStores() {
-      const query = document.getElementById('storeSearch').value.toLowerCase();
-      const region = document.getElementById('regionFilter').value;
       const body = document.getElementById('storeTableBody');
       const noResult = document.getElementById('noResult');
       
-      const filtered = STORES.filter(s => {
-        const matchRegion = (region === '전체' || s.region === region);
-        const matchName = s.name.toLowerCase().includes(query) || s.address.toLowerCase().includes(query);
-        return matchRegion && matchName;
-      }).sort((a, b) => b.count - a.count);
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const paginatedItems = filteredStores.slice(start, end);
 
-      if (filtered.length === 0) {
+      if (filteredStores.length === 0) {
         body.innerHTML = '';
         noResult.style.display = 'block';
+        document.getElementById('pagination').innerHTML = '';
         return;
       }
 
       noResult.style.display = 'none';
-      body.innerHTML = filtered.map((s, i) => `
-        <tr>
-          <td><span class="rank-badge">${i + 1}</span></td>
-          <td style="font-weight:700; color:#1e3a8a;">${s.name}</td>
-          <td><span class="count-badge">${s.count}회 당첨</span></td>
-          <td><span class="region-badge">${s.region}</span></td>
-          <td style="line-height:1.4;">
-            <a href="https://map.kakao.com/?q=${encodeURIComponent(s.address)}" target="_blank" class="address-link" title="카카오맵에서 위치 보기">
-              ${s.address} <i data-lucide="external-link" style="width:12px; height:12px;"></i>
-            </a>
-          </td>
-        </tr>
-      `).join('');
-      lucide.createIcons(); // 아이콘 재생성
+      body.innerHTML = paginatedItems.map((s, i) => {
+        const rank = start + i + 1;
+        let rankClass = '';
+        if (rank === 1) rankClass = 'rank-1';
+        else if (rank === 2) rankClass = 'rank-2';
+        else if (rank === 3) rankClass = 'rank-3';
+
+        return `
+          <tr>
+            <td><span class="rank-badge ${rankClass}">${rank}</span></td>
+            <td style="font-weight:700; color:#1e3a8a;">${s.name}</td>
+            <td><span class="count-badge">${s.count}회 당첨</span></td>
+            <td><span class="region-badge">${s.region}</span></td>
+            <td>
+              <a href="https://map.kakao.com/?q=${encodeURIComponent(s.address)}" target="_blank" class="address-link">
+                ${s.address} <i data-lucide="external-link" style="width:12px; height:12px;"></i>
+              </a>
+            </td>
+          </tr>
+        `;
+      }).join('');
+      
+      renderPagination();
+      lucide.createIcons();
     }
 
-    document.getElementById('storeSearch').addEventListener('input', renderStores);
-    document.getElementById('regionFilter').addEventListener('change', renderStores);
+    function renderPagination() {
+      const container = document.getElementById('pagination');
+      const totalPages = Math.ceil(filteredStores.length / itemsPerPage);
+      if (totalPages <= 1) { container.innerHTML = ''; return; }
+
+      let html = `<button class="page-btn ${currentPage === 1 ? 'disabled' : ''}" onclick="changePage(${currentPage-1})">이전</button>`;
+      for (let i = 1; i <= totalPages; i++) {
+        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+      }
+      html += `<button class="page-btn ${currentPage === totalPages ? 'disabled' : ''}" onclick="changePage(${currentPage+1})">다음</button>`;
+      container.innerHTML = html;
+    }
+
+    window.changePage = (page) => {
+      const totalPages = Math.ceil(filteredStores.length / itemsPerPage);
+      if (page < 1 || page > totalPages) return;
+      currentPage = page;
+      renderStores();
+      document.querySelector('.store-section').scrollIntoView({ behavior: 'smooth' });
+    };
+
+    document.getElementById('storeSearch').addEventListener('input', updateList);
+    document.getElementById('regionFilter').addEventListener('change', updateList);
     window.onload = init;
   </script>
 </body>
