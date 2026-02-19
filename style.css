@@ -87,7 +87,7 @@ header {
   border-radius: 50%;
 }
 
-/* Main Layout Optimization */
+/* Main Layout */
 .container {
   max-width: 1100px;
   margin: 2rem auto;
@@ -154,14 +154,6 @@ header {
   margin-top: 8px;
 }
 
-.ad-top { margin-top: 0; margin-bottom: 2rem; }
-.ad-mid { margin: 2.5rem 0; }
-.ad-bottom { margin-top: 2.5rem; margin-bottom: 0; }
-.ad-sidebar { 
-  min-height: 400px; 
-  margin: 0;
-}
-
 /* Generator Section */
 section {
   background: var(--card-bg);
@@ -205,14 +197,14 @@ button#generate-btn {
   cursor: pointer !important;
   box-shadow: 0 8px 25px -5px rgba(245, 158, 11, 0.4) !important;
   transition: var(--transition) !important;
-  order: 2; /* 순서 변경 (뒤로) */
+  order: 2;
 }
 
 .stats-btn {
   display: inline-flex !important;
   align-items: center;
   justify-content: center;
-  background: #dbeafe !important; /* 확실한 대비를 위한 연한 파랑 */
+  background: #dbeafe !important;
   color: #1e40af !important;
   font-size: 1rem !important;
   font-weight: 700 !important;
@@ -222,7 +214,7 @@ button#generate-btn {
   text-decoration: none !important;
   cursor: pointer !important;
   transition: var(--transition) !important;
-  order: 1; /* 순서 변경 (앞으로) */
+  order: 1;
 }
 
 button#generate-btn:hover {
@@ -234,10 +226,6 @@ button#generate-btn:hover {
   background: #eff6ff !important;
   border-color: #3b82f6 !important;
   transform: translateY(-2px);
-}
-
-.stats-btn:active, button#generate-btn:active {
-  transform: translateY(0);
 }
 
 /* Lotto Balls */
@@ -282,43 +270,12 @@ button#generate-btn:hover {
 .history-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1rem;
 }
 
 .history-table th, .history-table td {
   padding: 15px;
   border-bottom: 1px solid var(--border-color);
   text-align: center;
-}
-
-.history-table th {
-  color: var(--text-muted);
-  font-weight: 700;
-  background: var(--bg-color);
-}
-
-/* Frequency Grid */
-.freq-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-  gap: 12px;
-  margin-top: 1.5rem;
-}
-
-.freq-item {
-  background: var(--bg-color);
-  padding: 15px 10px;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: var(--transition);
-}
-
-.freq-item:hover {
-  border-color: var(--accent-blue);
-  transform: translateY(-2px);
 }
 
 /* Sidebar Info Card */
@@ -350,41 +307,73 @@ button#generate-btn:hover {
   transition: var(--transition);
 }
 
-.button-link:hover {
-  filter: brightness(1.1);
-  transform: translateY(-2px);
-}
-
-/* Footer */
-footer {
-  background: #0f172a;
-  color: white;
-  padding: 4rem 1.5rem;
-  text-align: center;
-  margin-top: 4rem;
-}
-
-.footer-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  padding: 0;
-}
-
-.footer-links a {
-  color: #94a3b8;
-  text-decoration: none;
-}
-
-/* Responsive */
+/* Responsive Optimization */
 @media (max-width: 992px) {
   .main-layout { grid-template-columns: 1fr; }
   .sidebar { display: none; }
+  .container { margin: 1rem auto; padding: 0 1rem; }
 }
 
 @media (max-width: 768px) {
-  section { padding: 1.5rem; }
-  .ball { width: 40px; height: 40px; font-size: 1rem; }
+  /* Header Fix */
+  .nav-container {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-links {
+    gap: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  /* Button Logic Switch for Mobile */
+  .main-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  button#generate-btn {
+    order: 1 !important; /* 번호 생성이 위로 */
+    width: 100%;
+    padding: 1rem !important;
+    font-size: 1.2rem !important;
+  }
+
+  .stats-btn {
+    order: 2 !important; /* 통계가 아래로 */
+    width: 100%;
+    padding: 0.8rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Vertical Stretching Fix */
+  section {
+    padding: 1.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .generator-section h1 {
+    font-size: 1.6rem;
+  }
+
+  .ball {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+
+  .lotto-set {
+    gap: 6px;
+    padding: 0.8rem;
+  }
+
+  .ad-container {
+    min-height: 100px;
+    margin: 1rem 0;
+  }
 }
