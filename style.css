@@ -217,17 +217,6 @@ button#generate-btn {
   order: 1;
 }
 
-button#generate-btn:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 12px 30px -5px rgba(245, 158, 11, 0.5) !important;
-}
-
-.stats-btn:hover {
-  background: #eff6ff !important;
-  border-color: #3b82f6 !important;
-  transform: translateY(-2px);
-}
-
 /* Lotto Balls */
 .results-container {
   display: flex;
@@ -266,16 +255,33 @@ button#generate-btn:hover {
 .ball-31 { background: radial-gradient(circle at 30% 30%, #94a3b8, #475569); }
 .ball-41 { background: radial-gradient(circle at 30% 30%, #4ade80, #16a34a); }
 
-/* Table Styles */
+/* Table & History Styles */
 .history-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: auto;
 }
 
 .history-table th, .history-table td {
-  padding: 15px;
+  padding: 12px 8px;
   border-bottom: 1px solid var(--border-color);
   text-align: center;
+  vertical-align: middle;
+}
+
+.history-balls {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: nowrap; /* 세로 줄바꿈 금지 */
+  min-width: min-content;
+}
+
+.ball-sm {
+  width: 32px;
+  height: 32px;
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 /* Sidebar Info Card */
@@ -315,65 +321,34 @@ button#generate-btn:hover {
 }
 
 @media (max-width: 768px) {
-  /* Header Fix */
-  .nav-container {
-    flex-direction: column;
-    gap: 0.8rem;
-    padding: 0.5rem 1rem;
+  .nav-container { flex-direction: column; gap: 0.8rem; padding: 0.5rem 1rem; }
+  .nav-links { gap: 1rem; font-size: 0.85rem; }
+  .logo { font-size: 1.2rem; }
+
+  .main-buttons { flex-direction: column; width: 100%; }
+  button#generate-btn { order: 1 !important; width: 100%; padding: 1rem !important; font-size: 1.2rem !important; }
+  .stats-btn { order: 2 !important; width: 100%; padding: 0.8rem !important; font-size: 0.9rem !important; }
+
+  section { padding: 1.5rem 0.8rem; margin-bottom: 1rem; }
+  .generator-section h1 { font-size: 1.6rem; }
+
+  /* History Table Mobile Optimization */
+  .history-table th, .history-table td {
+    padding: 10px 4px;
+    font-size: 0.8rem;
   }
   
-  .nav-links {
-    gap: 1rem;
-    font-size: 0.85rem;
+  .history-balls {
+    gap: 4px;
   }
 
-  .logo {
-    font-size: 1.2rem;
+  .ball-sm {
+    width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
   }
 
-  /* Button Logic Switch for Mobile */
-  .main-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  button#generate-btn {
-    order: 1 !important; /* 번호 생성이 위로 */
-    width: 100%;
-    padding: 1rem !important;
-    font-size: 1.2rem !important;
-  }
-
-  .stats-btn {
-    order: 2 !important; /* 통계가 아래로 */
-    width: 100%;
-    padding: 0.8rem !important;
-    font-size: 0.9rem !important;
-  }
-
-  /* Vertical Stretching Fix */
-  section {
-    padding: 1.5rem 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .generator-section h1 {
-    font-size: 1.6rem;
-  }
-
-  .ball {
-    width: 38px;
-    height: 38px;
-    font-size: 1rem;
-  }
-
-  .lotto-set {
-    gap: 6px;
-    padding: 0.8rem;
-  }
-
-  .ad-container {
-    min-height: 100px;
-    margin: 1rem 0;
-  }
+  .ball { width: 38px; height: 38px; font-size: 1rem; }
+  .lotto-set { gap: 6px; padding: 0.8rem; }
+  .ad-container { min-height: 100px; margin: 1rem 0; }
 }
