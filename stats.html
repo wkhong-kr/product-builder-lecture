@@ -27,10 +27,15 @@
     .region-select { padding: 12px 16px; border: 1.5px solid #e2e8f0; border-radius: 10px; background: white; cursor: pointer; }
 
     /* 테이블 레이아웃 최적화 */
-    .table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid #f1f5f9; }
-    .store-table { width: 100%; border-collapse: collapse; min-width: 600px; }
-    .store-table th { background: #f8fafc; padding: 15px; text-align: left; font-weight: 700; color: #475569; font-size: 0.9rem; }
-    .store-table td { padding: 15px; border-bottom: 1px solid #f1f5f9; font-size: 0.95rem; }
+    .table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid #f1f5f9; background: white; }
+    .store-table { width: 100%; border-collapse: collapse; min-width: 800px; table-layout: fixed; }
+    .store-table th { background: #f8fafc; padding: 15px; text-align: left; font-weight: 700; color: #475569; font-size: 0.9rem; border-bottom: 2px solid #e2e8f0; }
+    .store-table td { padding: 15px; border-bottom: 1px solid #f1f5f9; font-size: 0.95rem; vertical-align: middle; }
+    
+    /* 주소 링크 스타일 */
+    .address-link { color: #64748b; text-decoration: none; display: flex; align-items: center; gap: 5px; transition: color 0.2s; }
+    .address-link:hover { color: #2563eb; text-decoration: underline; }
+    .map-icon { color: #94a3b8; font-size: 0.8rem; }
     
     /* 배지 스타일 */
     .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: #f6ad55; color: #1a365d; border-radius: 6px; font-weight: 800; font-size: 0.75rem; }
@@ -94,11 +99,11 @@
         <table class="store-table">
           <thead>
             <tr>
-              <th style="width: 60px;">순위</th>
-              <th style="width: 180px;">상호명</th>
-              <th style="width: 120px;">1등 당첨</th>
-              <th style="width: 100px;">지역</th>
-              <th>상세 주소</th>
+              <th style="width: 50px;">순위</th>
+              <th style="width: 160px;">상호명</th>
+              <th style="width: 100px;">1등 횟수</th>
+              <th style="width: 80px;">지역</th>
+              <th>상세 주소 (클릭 시 지도 보기 🗺️)</th>
             </tr>
           </thead>
           <tbody id="storeTableBody"></tbody>
@@ -183,9 +188,14 @@
           <td style="font-weight:700; color:#1e3a8a;">${s.name}</td>
           <td><span class="count-badge">${s.count}회 당첨</span></td>
           <td><span class="region-badge">${s.region}</span></td>
-          <td style="color:#64748b; font-size:0.85rem; line-height:1.4;">${s.address}</td>
+          <td style="line-height:1.4;">
+            <a href="https://map.kakao.com/?q=${encodeURIComponent(s.address)}" target="_blank" class="address-link" title="카카오맵에서 위치 보기">
+              ${s.address} <i data-lucide="external-link" style="width:12px; height:12px;"></i>
+            </a>
+          </td>
         </tr>
       `).join('');
+      lucide.createIcons(); // 아이콘 재생성
     }
 
     document.getElementById('storeSearch').addEventListener('input', renderStores);
