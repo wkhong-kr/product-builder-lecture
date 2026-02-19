@@ -122,7 +122,7 @@ const reviewForm = document.getElementById('review-form');
 const reviewsList = document.getElementById('reviews-list');
 const initialReviews = [
   { name: '행운의신', rating: 5, content: '여기서 뽑은 번호로 4등 당첨됐어요!', date: '2026-02-15' },
-  { name: '로또매니아1', rating: 4, content: '디자인이 깔끔해서 좋아요.', date: '2026-02-17' }
+  { name: '1st lotto1', rating: 4, content: '디자인이 깔끔해서 좋아요.', date: '2026-02-17' }
 ];
 
 function renderReviews(reviews) {
