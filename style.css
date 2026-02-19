@@ -232,37 +232,56 @@ header {
   display: flex !important;
   gap: 1.2rem;
   justify-content: center;
-  margin: 2rem 0;
+  margin: 2.5rem 0;
   flex-wrap: wrap;
   position: relative;
   z-index: 10;
+  align-items: center;
+}
+
+button#generate-btn {
+  background: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
+  font-size: 1.4rem !important;
+  font-weight: 900 !important;
+  padding: 1.2rem 3.5rem !important;
+  border: none !important;
+  border-radius: 16px !important;
+  cursor: pointer !important;
+  box-shadow: 0 6px 20px rgba(246, 173, 85, 0.4) !important;
+  transition: var(--transition) !important;
 }
 
 .stats-btn {
   display: inline-flex !important;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
-  color: white !important;
-  font-size: 1.1rem;
-  font-weight: 800;
-  padding: 1rem 2.5rem;
-  border: none;
-  border-radius: 12px;
+  background: #f1f5f9 !important; /* 차분한 배경색으로 변경 */
+  color: #475569 !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  padding: 0.8rem 1.5rem !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 10px !important;
   text-decoration: none !important;
-  cursor: pointer;
-  transition: var(--transition);
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+  cursor: pointer !important;
+  transition: var(--transition) !important;
+  box-shadow: none !important;
 }
 
-button#generate-btn:hover, .stats-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  filter: brightness(1.1);
+button#generate-btn:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(246, 173, 85, 0.5) !important;
+  filter: brightness(1.05);
+}
+
+.stats-btn:hover {
+  background: #e2e8f0 !important;
+  color: var(--primary-color) !important;
 }
 
 .stats-btn:active, button#generate-btn:active {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 /* Lotto Balls */
