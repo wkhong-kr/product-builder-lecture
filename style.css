@@ -1,23 +1,25 @@
 :root {
-  --primary-color: #1a365d; /* Trustworthy Navy */
-  --secondary-color: #f6ad55; /* Fortune Gold */
-  --bg-color: #f1f5f9;
+  --primary-color: #1e3a8a; /* Deep Navy */
+  --secondary-color: #fbbf24; /* Amber Gold */
+  --bg-color: #f8fafc; /* Very Light Gray/Blue */
   --card-bg: #ffffff;
-  --text-main: #1e293b;
-  --text-muted: #64748b;
-  --accent-success: #10b981;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --accent-blue: #3b82f6;
+  --accent-soft-blue: #eff6ff;
   --border-color: #e2e8f0;
-  --transition: all 0.3s ease;
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="dark"] {
-  --primary-color: #3b82f6;
+  --primary-color: #60a5fa;
   --secondary-color: #fbbf24;
-  --bg-color: #0f172a;
-  --card-bg: #1e293b;
+  --bg-color: #020617;
+  --card-bg: #0f172a;
   --text-main: #f1f5f9;
   --text-muted: #94a3b8;
-  --border-color: #334155;
+  --border-color: #1e293b;
+  --accent-soft-blue: #1e293b;
 }
 
 body {
@@ -31,7 +33,7 @@ body {
 
 /* Header & Nav */
 header {
-  background: var(--primary-color);
+  background: #1e3a8a;
   color: white;
   padding: 1rem 0;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -87,20 +89,20 @@ header {
 
 /* Main Layout Optimization */
 .container {
-  max-width: 1100px; /* Increased width for sidebar */
+  max-width: 1100px;
   margin: 2rem auto;
   padding: 0 1.5rem;
 }
 
 .main-layout {
   display: grid;
-  grid-template-columns: 1fr 300px; /* Main content + Sidebar */
+  grid-template-columns: 1fr 300px;
   gap: 2rem;
   align-items: start;
 }
 
 .content-area {
-  min-width: 0; /* Prevents grid blowout */
+  min-width: 0;
 }
 
 .sidebar {
@@ -111,21 +113,21 @@ header {
 
 .sticky-sidebar {
   position: sticky;
-  top: 80px; /* Accounts for sticky header */
+  top: 80px;
 }
 
-/* Ad Container Styling - 시각화 강화 */
+/* Ad Container Styling */
 .ad-container {
-  background: #fffbef; /* 연한 노란색 배경으로 광고 영역 강조 */
-  border: 2px dashed #f6ad55; /* 오렌지색 점선 테두리 */
+  background: var(--accent-soft-blue);
+  border: 2px dashed var(--accent-blue);
   margin: 2rem 0;
   padding: 1.5rem 1rem 1rem;
   border-radius: 12px;
   text-align: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  min-height: 150px; /* 높이를 조금 더 확보 */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  min-height: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -133,23 +135,23 @@ header {
 }
 
 .ad-container::before {
-  content: "GOOGLE ADSENSE AREA (광고 배치 예정)";
+  content: "ADVERTISEMENT AREA";
   position: absolute;
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 800;
-  color: #f6ad55;
-  letter-spacing: 0.05rem;
-  opacity: 1;
+  color: var(--accent-blue);
+  letter-spacing: 0.1rem;
+  opacity: 0.6;
 }
 
 .ad-container::after {
-  content: "실제 광고 승인 후 ID를 입력하면 이 자리에 광고가 출력됩니다.";
-  font-size: 0.85rem;
-  color: #94a3b8;
-  margin-top: 10px;
+  content: "Google AdSense 광고가 표시될 위치입니다.";
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 8px;
 }
 
 .ad-top { margin-top: 0; margin-bottom: 2rem; }
@@ -158,130 +160,84 @@ header {
 .ad-sidebar { 
   min-height: 400px; 
   margin: 0;
-  background: var(--bg-color);
 }
 
-/* Sidebar Info Card */
-.sidebar-info-card {
-  background: var(--primary-color);
-  color: white;
-  padding: 1.5rem;
-  border-radius: 16px;
-  margin-top: 1.5rem;
-  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
+/* Generator Section */
+section {
+  background: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px -5px rgba(0,0,0,0.05);
+  border: 1px solid var(--border-color);
 }
 
-.sidebar-info-card h3 {
-  color: var(--secondary-color) !important;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-}
-
-.sidebar-info-card p {
-  font-size: 0.9rem;
-  opacity: 0.9;
-  margin-bottom: 1.5rem;
-}
-
-/* Generator Section Cleanup */
 .generator-section {
   text-align: center;
-  border-top: 5px solid var(--secondary-color);
-  padding: 3rem 1.5rem !important;
+  border-top: 6px solid var(--secondary-color);
 }
 
 .generator-section h1 {
   font-size: 2.2rem;
   color: var(--primary-color);
   margin-bottom: 1rem;
+  font-weight: 900;
 }
 
-.generator-section p {
-  color: var(--text-muted);
-  margin-bottom: 2rem;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 992px) {
-  .main-layout {
-    grid-template-columns: 1fr;
-  }
-  
-  .sidebar {
-    display: none; /* Hide sidebar on small tablets and mobile to focus on content */
-  }
-  
-  .container {
-    max-width: 800px;
-  }
-}
-
-@media (max-width: 768px) {
-  .ad-container {
-    padding: 1rem 0.5rem;
-    min-height: 90px;
-    margin: 1.5rem 0;
-  }
-  
-  .generator-section h1 {
-    font-size: 1.8rem;
-  }
-}
-
+/* Buttons Styling Refined */
 .main-buttons {
   display: flex !important;
-  gap: 1.2rem;
+  gap: 1rem;
   justify-content: center;
   margin: 2.5rem 0;
   flex-wrap: wrap;
-  position: relative;
-  z-index: 10;
   align-items: center;
 }
 
 button#generate-btn {
-  background: var(--secondary-color) !important;
-  color: var(--primary-color) !important;
-  font-size: 1.4rem !important;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+  color: #1e3a8a !important;
+  font-size: 1.3rem !important;
   font-weight: 900 !important;
-  padding: 1.2rem 3.5rem !important;
+  padding: 1.2rem 3rem !important;
   border: none !important;
   border-radius: 16px !important;
   cursor: pointer !important;
-  box-shadow: 0 6px 20px rgba(246, 173, 85, 0.4) !important;
+  box-shadow: 0 8px 25px -5px rgba(245, 158, 11, 0.4) !important;
   transition: var(--transition) !important;
+  order: 2; /* 순서 변경 (뒤로) */
 }
 
 .stats-btn {
   display: inline-flex !important;
   align-items: center;
   justify-content: center;
-  background: #f1f5f9 !important; /* 차분한 배경색으로 변경 */
-  color: #475569 !important;
-  font-size: 0.95rem !important;
+  background: #dbeafe !important; /* 확실한 대비를 위한 연한 파랑 */
+  color: #1e40af !important;
+  font-size: 1rem !important;
   font-weight: 700 !important;
-  padding: 0.8rem 1.5rem !important;
-  border: 1px solid var(--border-color) !important;
-  border-radius: 10px !important;
+  padding: 1rem 2rem !important;
+  border: 1.5px solid #bfdbfe !important;
+  border-radius: 16px !important;
   text-decoration: none !important;
   cursor: pointer !important;
   transition: var(--transition) !important;
-  box-shadow: none !important;
+  order: 1; /* 순서 변경 (앞으로) */
 }
 
 button#generate-btn:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 10px 25px rgba(246, 173, 85, 0.5) !important;
-  filter: brightness(1.05);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px -5px rgba(245, 158, 11, 0.5) !important;
 }
 
 .stats-btn:hover {
-  background: #e2e8f0 !important;
-  color: var(--primary-color) !important;
+  background: #eff6ff !important;
+  border-color: #3b82f6 !important;
+  transform: translateY(-2px);
 }
 
 .stats-btn:active, button#generate-btn:active {
-  transform: translateY(-2px);
+  transform: translateY(0);
 }
 
 /* Lotto Balls */
@@ -297,21 +253,21 @@ button#generate-btn:hover {
   justify-content: center;
   gap: 12px;
   background: var(--bg-color);
-  padding: 1rem;
+  padding: 1.2rem;
   border-radius: 50px;
   border: 1px solid var(--border-color);
 }
 
 .ball {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
   box-shadow: inset -3px -3px 6px rgba(0,0,0,0.2), 2px 2px 5px rgba(0,0,0,0.1);
 }
@@ -322,212 +278,113 @@ button#generate-btn:hover {
 .ball-31 { background: radial-gradient(circle at 30% 30%, #94a3b8, #475569); }
 .ball-41 { background: radial-gradient(circle at 30% 30%, #4ade80, #16a34a); }
 
-/* Blog & Info Grid */
-.info-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-
-.info-card {
-  padding: 1.5rem;
-  border: 1px solid var(--border-color);
-  background: var(--bg-color);
-}
-
-.blog-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.blog-link article {
-  padding: 1.5rem;
-  background: var(--bg-color);
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  transition: var(--transition);
-}
-
-.blog-link:hover article {
-  border-color: var(--primary-color);
-  transform: translateX(5px);
-}
-
-/* Reviews */
-.review-item {
-  border-bottom: 1px solid var(--border-color);
-  padding: 1.5rem 0;
-}
-
-.review-item:last-child { border-bottom: none; }
-
-.review-form-container {
-  background: var(--bg-color);
-  padding: 1.5rem;
-  border-radius: 12px;
-}
-
-.form-group {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-/* Ad Container Optimization */
-.ad-container {
-  background: var(--bg-color);
-  border: 1px dashed var(--text-muted);
-  margin: 1.5rem 0;
-  padding: 0.8rem;
-  border-radius: 8px;
-  text-align: center;
-  min-height: 90px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-@media (max-width: 768px) {
-  .ad-container {
-    min-height: 60px;
-    margin: 1rem 0;
-    padding: 0.5rem;
-  }
-  .ad-container::before {
-    font-size: 0.6rem;
-  }
-}
-
-/* History & Stats Styles */
-.stats-section, .history-section {
-  margin-bottom: 2rem;
-}
-
+/* Table Styles */
 .history-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
-  font-size: 0.9rem;
 }
 
 .history-table th, .history-table td {
-  padding: 10px;
+  padding: 15px;
   border-bottom: 1px solid var(--border-color);
   text-align: center;
 }
 
-.history-balls {
-  display: flex;
-  gap: 5px;
-  justify-content: center;
-  flex-wrap: wrap;
+.history-table th {
+  color: var(--text-muted);
+  font-weight: 700;
+  background: var(--bg-color);
 }
 
-.ball-sm {
-  width: 28px;
-  height: 28px;
-  font-size: 0.75rem;
-}
-
+/* Frequency Grid */
 .freq-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 12px;
   margin-top: 1.5rem;
 }
 
 .freq-item {
   background: var(--bg-color);
-  padding: 12px 8px;
+  padding: 15px 10px;
   border-radius: 12px;
-  text-align: center;
   border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: var(--transition);
 }
 
-.freq-rank {
-  font-size: 0.7rem;
-  font-weight: 800;
-  color: var(--text-muted);
-  margin-bottom: 5px;
-  text-transform: uppercase;
+.freq-item:hover {
+  border-color: var(--accent-blue);
+  transform: translateY(-2px);
 }
 
-.freq-num {
-  display: block;
-  font-weight: 800;
-  color: var(--primary-color);
+/* Sidebar Info Card */
+.sidebar-info-card {
+  background: var(--primary-color);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 20px;
+  margin-top: 1.5rem;
+  box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.3);
 }
 
-.freq-count {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-.freq-bar-bg {
-  height: 4px;
-  background: #e2e8f0;
-  margin-top: 5px;
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.freq-bar {
-  height: 100%;
-  background: var(--secondary-color);
+.sidebar-info-card h3 {
+  color: var(--secondary-color) !important;
+  margin-bottom: 1rem;
 }
 
 .button-link {
   display: inline-block;
-  background-color: var(--primary-color) !important;
-  color: white !important;
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: 12px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 800;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
   transition: var(--transition);
-  border: 1px solid var(--border-color);
 }
 
 .button-link:hover {
-  background-color: var(--secondary-color) !important;
-  color: var(--primary-color) !important;
-}
-
-article img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 2rem auto;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  filter: brightness(1.1);
+  transform: translateY(-2px);
 }
 
 /* Footer */
 footer {
-  background: var(--primary-color);
+  background: #0f172a;
   color: white;
   padding: 4rem 1.5rem;
   text-align: center;
+  margin-top: 4rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding: 0;
 }
 
 .footer-links a {
-  color: rgba(255,255,255,0.6);
+  color: #94a3b8;
   text-decoration: none;
-  margin: 0 10px;
 }
 
-/* Mobile */
+/* Responsive */
+@media (max-width: 992px) {
+  .main-layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+}
+
 @media (max-width: 768px) {
-  .nav-container { flex-direction: column; gap: 1rem; }
-  .info-grid { grid-template-columns: 1fr; }
-  .lotto-set { gap: 6px; padding: 0.8rem; flex-wrap: wrap; }
-  .ball { width: 38px; height: 38px; font-size: 0.95rem; }
-  .form-group { flex-direction: column; }
   section { padding: 1.5rem; }
+  .ball { width: 40px; height: 40px; font-size: 1rem; }
 }
