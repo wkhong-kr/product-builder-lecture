@@ -1,4 +1,0 @@
-# SPA 리다이렉트 해제: 모든 파일은 자기 자신의 경로를 따름
-/test.html /test.html 200
-/stats.html /stats.html 200
-/index.html /index.html 200
