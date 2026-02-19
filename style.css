@@ -120,12 +120,20 @@ h1, h2, h3 {
   border-top: 5px solid var(--secondary-color);
 }
 
+.main-buttons {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
 button#generate-btn {
   background: var(--secondary-color);
   color: #1a365d;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 800;
-  padding: 1rem 3rem;
+  padding: 1rem 2.5rem;
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -133,9 +141,30 @@ button#generate-btn {
   box-shadow: 0 4px 14px rgba(246, 173, 85, 0.4);
 }
 
-button#generate-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(246, 173, 85, 0.5);
+.stats-btn {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 800;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+}
+
+button#generate-btn:hover, .stats-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  filter: brightness(1.1);
+}
+
+.stats-btn:active, button#generate-btn:active {
+  transform: translateY(-1px);
 }
 
 /* Lotto Balls */
