@@ -23,28 +23,38 @@
   </header>
 
   <main class="container">
+    <div style="text-align: center; margin: 10px 0; color: #64748b; font-size: 0.8rem;">최종 업데이트: 2026-02-19</div>
+    
     <div class="ad-container">
-      <!-- 상단 자동 광고 영역 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-YOUR_ID_HERE"
-           data-ad-slot="TOP_AD_SLOT"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-YOUR_ID_HERE" data-ad-slot="TOP_AD_SLOT" data-ad-format="auto" data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- 버튼을 섹션 외부로 독립시켜 가시성 확보 -->
+    <div style="display: flex; justify-content: center; margin: 2rem 0; gap: 1rem; flex-wrap: wrap;">
+        <a href="stats.html" style="
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 800;
+            padding: 1.2rem 2.5rem;
+            border-radius: 15px;
+            text-decoration: none;
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+            border: 2px solid #ffffff;
+            transition: transform 0.2s;
+        ">로또 당첨확률 높이는 법 📊</a>
     </div>
 
     <section class="generator-section">
       <h1>로또 번호 생성기</h1>
       <p>오늘의 행운을 불러올 5세트의 번호를 즉시 확인해보세요.</p>
-      <div class="main-buttons">
-        <button id="generate-btn">번호 생성하기</button>
-        <a href="stats.html" class="stats-btn">로또 당첨확율높이는법 📊</a>
-      </div>
+      <button id="generate-btn">번호 생성하기</button>
       
-      <div id="lotto-results" class="results-container">
-        <!-- 로또 번호 세트가 여기에 표시됩니다. -->
-      </div>
+      <div id="lotto-results" class="results-container"></div>
     </section>
 
     <section class="history-section">
@@ -52,15 +62,9 @@
       <div style="overflow-x: auto;">
         <table class="history-table">
           <thead>
-            <tr>
-              <th>회차</th>
-              <th>당첨번호</th>
-              <th>보너스</th>
-            </tr>
+            <tr><th>회차</th><th>당첨번호</th><th>보너스</th></tr>
           </thead>
-          <tbody id="history-body">
-            <!-- 데이터가 JS에서 삽입됩니다. -->
-          </tbody>
+          <tbody id="history-body"></tbody>
         </table>
       </div>
     </section>
@@ -68,27 +72,14 @@
     <section class="stats-section">
       <h2>번호별 누적 출현 횟수</h2>
       <p>1회차부터 현재까지 가장 자주 나온 번호를 확인해보세요.</p>
-      <div id="frequency-grid" class="freq-grid">
-        <!-- 데이터가 JS에서 삽입됩니다. -->
-      </div>
+      <div id="frequency-grid" class="freq-grid"></div>
     </section>
 
     <hr>
 
     <section id="how-to" class="info-section">
       <h2>로또 번호 생성기 활용 팁</h2>
-      <div class="ad-container">
-        <!-- 컨텐츠 사이 광고 영역 -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-YOUR_ID_HERE"
-             data-ad-slot="MID_AD_SLOT"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
-      <p>저희 생성기는 완전한 무작위 알고리즘을 사용하여 공정한 번호를 제공합니다. 로또는 확률 게임이지만, 매주 같은 방식으로 번호를 뽑는 것보다 저희 시스템을 통해 다양한 조합을 시도해보는 것이 즐거움을 더해줄 것입니다.</p>
-      
+      <p>저희 생성기는 완전한 무작위 알고리즘을 사용하여 공정한 번호를 제공합니다.</p>
       <div class="info-grid">
         <div class="info-card">
           <h3>왜 우리 생성기인가요?</h3>
@@ -96,7 +87,7 @@
         </div>
         <div class="info-card">
           <h3>당첨 확률을 높이려면?</h3>
-          <p>통계적으로 자주 나오는 번호를 참고하거나, 자신만의 규칙을 만들어보세요. 저희 블로그에서 다양한 전략을 확인하실 수 있습니다.</p>
+          <p>위의 <b>[로또 당첨확률 높이는 법]</b> 버튼을 눌러 상세 통계 자료를 확인해보세요.</p>
         </div>
       </div>
     </section>
@@ -107,69 +98,16 @@
         <article>
           <h3>로또 1등 당첨자들의 공통점은?</h3>
           <p>최근 1년간의 당첨 데이터를 분석해본 결과, 의외의 공통점이 발견되었습니다...</p>
-          <span class="read-more">더 보기 &rarr;</span>
-        </article>
-      </a>
-      <a href="blog-post-2.html" class="blog-link">
-        <article>
-          <h3>자동 vs 수동, 무엇이 더 유리할까?</h3>
-          <p>많은 분들이 궁금해하시는 자동 선택과 수동 선택의 확률 차이를 과학적으로 분석합니다.</p>
-          <span class="read-more">더 보기 &rarr;</span>
         </article>
       </a>
     </section>
 
-    <section class="reviews-section">
-      <h2>사용자 후기</h2>
-      <p>로또매니아를 이용하신 분들의 소중한 후기입니다.</p>
-      
-      <!-- 후기 작성 폼 -->
-      <div class="review-form-container">
-        <form id="review-form">
-          <div class="form-group">
-            <input type="text" id="reviewer-name" placeholder="닉네임" required>
-            <select id="reviewer-rating" required>
-              <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
-              <option value="4">⭐⭐⭐⭐ (4/5)</option>
-              <option value="3">⭐⭐⭐ (3/5)</option>
-              <option value="2">⭐⭐ (2/5)</option>
-              <option value="1">⭐ (1/5)</option>
-            </select>
-          </div>
-          <textarea id="review-content" placeholder="사용 후기를 남겨주세요 (최소 5자 이상)" required minlength="5"></textarea>
-          <button type="submit" id="submit-review-btn">후기 등록하기</button>
-        </form>
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2026 로또매니아. All rights reserved.</p>
       </div>
-
-      <!-- 후기 리스트 -->
-      <div id="reviews-list" class="reviews-list">
-        <!-- 후기가 여기에 동적으로 추가됩니다. -->
-      </div>
-    </section>
-
-    <div class="ad-container">
-      <!-- 하단 광고 영역 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-YOUR_ID_HERE"
-           data-ad-slot="BOTTOM_AD_SLOT"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+    </footer>
   </main>
-
-  <footer>
-    <div class="footer-content">
-      <p>&copy; 2026 로또매니아. All rights reserved.</p>
-      <ul class="footer-links">
-        <li><a href="about.html">회사 소개</a></li>
-        <li><a href="privacy.html">개인정보처리방침</a></li>
-        <li><a href="contact.html">문의하기</a></li>
-      </ul>
-    </div>
-  </footer>
-
   <script src="main.js"></script>
 </body>
-</html> 
+</html>
