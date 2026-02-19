@@ -17,6 +17,7 @@
     .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
     .chart-card { background: white; padding: 1.5rem; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
     .chart-card h3 { display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; color: #1a365d; font-size: 1.1rem; }
+    .chart-wrapper { position: relative; height: 250px; width: 100%; }
     
     /* 명당 섹션 개선 */
     .store-section { background: white; padding: 2rem; border-radius: 20px; border: 1px solid #e2e8f0; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
@@ -56,9 +57,18 @@
     </div>
 
     <div class="dashboard-grid">
-      <div class="chart-card"><h3><i data-lucide="calendar"></i> 요일별 당첨 비중</h3><canvas id="dayChart"></canvas></div>
-      <div class="chart-card"><h3><i data-lucide="clock"></i> 시간대별 당첨 비중</h3><canvas id="hourChart"></canvas></div>
-      <div class="chart-card"><h3><i data-lucide="pie-chart"></i> 자동/수동 당첨 비율</h3><canvas id="ratioChart"></canvas></div>
+      <div class="chart-card">
+        <h3><i data-lucide="calendar"></i> 요일별 당첨 비중</h3>
+        <div class="chart-wrapper"><canvas id="dayChart"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3><i data-lucide="clock"></i> 시간대별 당첨 비중</h3>
+        <div class="chart-wrapper"><canvas id="hourChart"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3><i data-lucide="pie-chart"></i> 자동/수동 당첨 비율</h3>
+        <div class="chart-wrapper"><canvas id="ratioChart"></canvas></div>
+      </div>
     </div>
 
     <section class="store-section">
@@ -134,11 +144,16 @@
     function init() {
       lucide.createIcons();
       // 차트 디자인 커스텀
-      const chartOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: '#f1f5f9' } }, x: { grid: { display: false } } } };
+      const chartOptions = { 
+        responsive: true, 
+        maintainAspectRatio: false, 
+        plugins: { legend: { display: false } }, 
+        scales: { y: { beginAtZero: true, grid: { color: '#f1f5f9' }, ticks: { font: { size: 11 } } }, x: { grid: { display: false }, ticks: { font: { size: 11 } } } } 
+      };
       
       new Chart(document.getElementById('dayChart'), { type: 'bar', data: { labels: DAY_DATA.labels, datasets: [{ data: DAY_DATA.values, backgroundColor: '#3b82f6', borderRadius: 8 }] }, options: chartOptions });
       new Chart(document.getElementById('hourChart'), { type: 'line', data: { labels: HOUR_DATA.labels, datasets: [{ data: HOUR_DATA.values, borderColor: '#f59e0b', tension: 0.4, fill: true, backgroundColor: 'rgba(245, 158, 11, 0.05)' }] }, options: chartOptions });
-      new Chart(document.getElementById('ratioChart'), { type: 'doughnut', data: { labels: RATIO_DATA.labels, datasets: [{ data: RATIO_DATA.values, backgroundColor: ['#3b82f6', '#10b981', '#f59e0b'], borderWidth: 0 }] }, options: { maintainAspectRatio: false } });
+      new Chart(document.getElementById('ratioChart'), { type: 'doughnut', data: { labels: RATIO_DATA.labels, datasets: [{ data: RATIO_DATA.values, backgroundColor: ['#3b82f6', '#10b981', '#f59e0b'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } } } });
       
       renderStores();
     }
