@@ -45,6 +45,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
@@ -58,16 +59,19 @@ header {
 
 .logo { font-size: 1.4rem; font-weight: 800; color: white; text-decoration: none; white-space: nowrap; }
 .nav-links { list-style: none; display: flex; gap: 1.5rem; white-space: nowrap; }
-.nav-links a { color: rgba(255, 255, 255, 0.8); text-decoration: none; font-weight: 600; }
+.nav-links a { color: rgba(255, 255, 255, 0.9); text-decoration: none; font-weight: 600; transition: color 0.2s; }
+.nav-links a:hover { color: white; }
 
 #theme-btn {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
-  padding: 5px 10px;
+  padding: 8px 12px;
   cursor: pointer;
   border-radius: 50%;
+  transition: all 0.2s;
 }
+#theme-btn:hover { background: rgba(255, 255, 255, 0.2); }
 
 /* Layout */
 .container {
@@ -93,6 +97,10 @@ header {
   border-radius: 12px;
   text-align: center;
   min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 /* Sections */
@@ -102,10 +110,64 @@ section {
   border-radius: 20px;
   margin-bottom: 2rem;
   border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .generator-section { text-align: center; border-top: 6px solid var(--secondary-color); }
 .generator-section h1 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 1rem; white-space: nowrap; }
+
+/* Blog Grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.blog-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
+}
+
+.blog-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  background: #cbd5e1;
+}
+
+.blog-content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-content h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+  line-height: 1.4;
+}
+
+.blog-meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: auto;
+}
 
 /* Buttons */
 .main-buttons {
@@ -113,7 +175,7 @@ section {
   gap: 1rem;
   justify-content: center;
   margin: 2rem 0;
-  flex-wrap: nowrap; /* 줄바꿈 금지 */
+  flex-wrap: nowrap;
 }
 
 button#generate-btn {
@@ -126,7 +188,11 @@ button#generate-btn {
   border-radius: 16px;
   cursor: pointer;
   white-space: nowrap;
+  box-shadow: 0 4px 6px rgba(245, 158, 11, 0.3);
+  transition: transform 0.1s;
 }
+
+button#generate-btn:active { transform: scale(0.98); }
 
 .stats-btn {
   display: inline-flex;
@@ -141,7 +207,10 @@ button#generate-btn {
   border-radius: 16px;
   text-decoration: none;
   white-space: nowrap;
+  transition: background 0.2s;
 }
+
+.stats-btn:hover { background: #bfdbfe; }
 
 /* Results Display */
 .lotto-set {
@@ -152,18 +221,20 @@ button#generate-btn {
   display: flex;
   justify-content: center;
   gap: 10px;
-  flex-wrap: nowrap; /* 번호 줄바꿈 절대 방지 */
+  flex-wrap: nowrap;
   overflow-x: hidden;
+  border: 1px solid var(--border-color);
 }
 
 .ball {
   width: 44px;
   height: 44px;
-  flex-shrink: 0; /* 공 크기 줄어들지 않게 고정 */
+  flex-shrink: 0;
   border-radius: 50%;
   display: flex; justify-content: center; align-items: center;
   color: white; font-weight: 800; font-size: 1.1rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .ball-1 { background: radial-gradient(circle at 30% 30%, #facc15, #ca8a04); }
@@ -175,8 +246,9 @@ button#generate-btn {
 /* History Table */
 .history-table { width: 100%; border-collapse: collapse; }
 .history-table th, .history-table td { padding: 15px 8px; border-bottom: 1px solid var(--border-color); text-align: center; }
-.history-balls { display: flex; gap: 6px; justify-content: center; flex-wrap: nowrap; } /* 줄바꿈 금지 */
-.ball-sm { width: 30px; height: 32px; flex-shrink: 0; font-size: 0.85rem; font-weight: 700; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; }
+.history-table th { background: var(--bg-color); color: var(--text-muted); font-size: 0.9rem; }
+.history-balls { display: flex; gap: 6px; justify-content: center; flex-wrap: nowrap; }
+.ball-sm { width: 30px; height: 32px; flex-shrink: 0; font-size: 0.85rem; font-weight: 700; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 
 /* Frequency Grid */
 .freq-grid {
@@ -193,13 +265,41 @@ button#generate-btn {
   flex-direction: column;
   align-items: center;
   border: 1px solid var(--border-color);
-  white-space: nowrap; /* 내부 텍스트 줄바꿈 방지 */
+  white-space: nowrap;
 }
 
+.freq-bar-bg { width: 100%; height: 4px; background: #e2e8f0; border-radius: 2px; margin-top: 5px; overflow: hidden; }
+.freq-bar { height: 100%; background: #3b82f6; border-radius: 2px; }
+
+/* Article/Info Section */
+.info-section h1 { font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary-color); }
+.info-section .meta { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; }
+.info-section p { margin-bottom: 1.2rem; font-size: 1.05rem; color: var(--text-main); }
+.info-section h3 { margin: 2rem 0 1rem; font-size: 1.4rem; color: var(--text-main); }
+.info-section ul { padding-left: 1.5rem; margin-bottom: 1.5rem; }
+.info-section li { margin-bottom: 0.5rem; }
+
+.info-card { background: var(--accent-soft-blue); padding: 1.5rem; border-radius: 12px; border: 1px solid #bfdbfe; }
+.info-card h3 { margin-top: 0; color: #1e40af; font-size: 1.2rem; }
+.info-card p { margin-bottom: 0; }
+
+.button-link {
+  display: inline-block;
+  background: var(--primary-color);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.button-link:hover { background: #1e40af; }
+
 /* Footer */
-footer { background: #0f172a; color: white; padding: 4rem 1.5rem; text-align: center; margin-top: 4rem; }
+footer { background: #0f172a; color: white; padding: 4rem 1.5rem; text-align: center; margin-top: 4rem; border-top: 1px solid #1e293b; }
 .footer-links { list-style: none; display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.5rem; }
-.footer-links a { color: #94a3b8; text-decoration: none; }
+.footer-links a { color: #94a3b8; text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: white; }
 
 /* Responsive (Mobile) */
 @media (max-width: 992px) {
@@ -212,19 +312,9 @@ footer { background: #0f172a; color: white; padding: 4rem 1.5rem; text-align: ce
   .nav-container { flex-direction: column; gap: 0.8rem; }
   .nav-links { gap: 0.8rem; font-size: 0.85rem; }
   
-  /* 버튼 줄바꿈 방지 및 크기 최적화 */
-  .main-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
+  .main-buttons { flex-direction: column; width: 100%; }
+  button#generate-btn, .stats-btn { width: 100% !important; padding: 0.8rem !important; font-size: 1.1rem !important; }
   
-  button#generate-btn, .stats-btn {
-    width: 100% !important;
-    padding: 0.8rem !important;
-    font-size: 1.1rem !important;
-  }
-  
-  /* 공 사이즈 축소하여 한 줄에 맞춤 */
   .lotto-set { gap: 5px; padding: 0.8rem; }
   .ball { width: 38px; height: 38px; font-size: 1rem; }
 
@@ -237,11 +327,4 @@ footer { background: #0f172a; color: white; padding: 4rem 1.5rem; text-align: ce
 
   section { padding: 1.2rem 0.8rem; }
   .generator-section h1 { font-size: 1.5rem; }
-}
-
-/* 아주 작은 화면 (320px 등) 대응 */
-@media (max-width: 360px) {
-  .ball { width: 34px; height: 38px; font-size: 0.9rem; }
-  .ball-sm { width: 22px; height: 22px; font-size: 0.65rem; }
-  .nav-links { gap: 0.5rem; font-size: 0.75rem; }
 }
